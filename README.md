@@ -113,5 +113,3 @@ Or simply double-click `index.html` to run it locally.
 
 This project was built as **Task 04** of the **SkillCraft Technology Web Development Internship (SCT_WD)**. The task objective was to develop a personal portfolio website — demonstrating skills in layout, interactivity, and data persistence through a polished, real-world-quality web application.
 
-
-

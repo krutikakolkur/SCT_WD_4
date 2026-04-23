@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumina — Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Ambient Background -->
+  <div class="ambient">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-mark">✦</span>
+      <span class="logo-text">Lumina</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-filter="all">
+        <span class="nav-icon">◈</span>
+        <span>All Tasks</span>
+        <span class="nav-badge" id="badge-all">0</span>
+      </button>
+      <button class="nav-item" data-filter="pending">
+        <span class="nav-icon">◇</span>
+        <span>Pending</span>
+        <span class="nav-badge" id="badge-pending">0</span>
+      </button>
+      <button class="nav-item" data-filter="completed">
+        <span class="nav-icon">◆</span>
+        <span>Completed</span>
+        <span class="nav-badge" id="badge-completed">0</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-stats">
+      <div class="stat-ring-wrap">
+        <svg class="stat-ring" viewBox="0 0 80 80">
+          <circle class="ring-bg" cx="40" cy="40" r="32"/>
+          <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="32"
+            stroke-dasharray="201" stroke-dashoffset="201"/>
+        </svg>
+        <div class="ring-label">
+          <span id="ring-pct">0%</span>
+          <small>done</small>
+        </div>
+      </div>
+      <p class="stat-sub" id="stat-sub">No tasks yet</p>
+    </div>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">‹</button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main" id="main">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+        <div class="header-title">
+          <h1 id="filter-title">All Tasks</h1>
+          <p class="header-date" id="header-date"></p>
+        </div>
+      </div>
+      <button class="add-btn" id="addBtn" aria-label="Add task">
+        <span class="add-icon">+</span>
+        <span>New Task</span>
+      </button>
+    </header>
+
+    <!-- Task List -->
+    <section class="task-section">
+      <div class="task-list" id="taskList">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">✦</div>
+          <p>Your canvas is empty.</p>
+          <small>Add a task to begin your day.</small>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+      <div class="modal-header">
+        <h2 id="modal-heading">New Task</h2>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="field">
+          <label for="taskTitle">Task Title</label>
+          <input type="text" id="taskTitle" placeholder="What needs to be done?" autocomplete="off"/>
+        </div>
+        <div class="field">
+          <label for="taskNote">Note <span class="optional">(optional)</span></label>
+          <textarea id="taskNote" rows="3" placeholder="Add a note…"></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="taskDate">Date</label>
+            <input type="date" id="taskDate"/>
+          </div>
+          <div class="field">
+            <label for="taskTime">Time</label>
+            <input type="time" id="taskTime"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Priority</label>
+          <div class="priority-group">
+            <label class="priority-chip" data-p="low">
+              <input type="radio" name="priority" value="low" checked/> Low
+            </label>
+            <label class="priority-chip" data-p="medium">
+              <input type="radio" name="priority" value="medium"/> Medium
+            </label>
+            <label class="priority-chip" data-p="high">
+              <input type="radio" name="priority" value="high"/> High
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-ghost" id="modalCancel">Cancel</button>
+        <button class="btn-primary" id="modalSave">Save Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
